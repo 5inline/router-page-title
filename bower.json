@@ -1,0 +1,27 @@
+{
+  "name": "router-page-title",
+  "description": "Configure page titles for Angular applications using Angular UI Router.",
+  "version": "1.0.0",
+  "authors": [
+    "5 Inline (http://5inline.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/5inline/router-page-title.git"
+  },
+  "homepage": "https://github.com/5inline/router-page-title",
+  "license": "MIT",
+  "main": "dist/router-page-title.js",
+  "ignore": [
+    "**/.*",
+    ".gitignore",
+    "gruntfile.js",
+    "package.json",
+    "releases",
+    "src"
+  ],
+  "dependencies": {
+    "angular": "1.2+",
+    "angular-ui-router": "0.2+"
+  }
+}
