@@ -20,6 +20,16 @@ angular.module('myModule').config(['routerPageTitleProvider', function (routerPa
 });
 ```
 
+Set your page title in your route state data.
+```
+.state( 'mystate', {
+  url : '/myurl',
+  data : {
+    pageTitle : 'My Page'
+  }
+})
+```
+
 Add the directive to your index.html file.
 ```
 <html>
