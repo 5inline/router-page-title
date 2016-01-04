@@ -37,3 +37,29 @@ Add the directive to your index.html file.
   <title router-page-title></title>
 </head>
 ```
+
+Add a meta description to route state data.
+```
+.state( 'mystate', {
+  url : '/myurl',
+  data : {
+    pageDescription : 'My meta description.'
+  }
+})
+```
+
+Add meta description to your index.html file.
+```
+<html>
+<head>
+  <meta router-page-title-description>
+</head>
+```
+
+Will output:
+```
+<html>
+<head>
+  <meta name="description" content="My meta description.">
+</head>
+```

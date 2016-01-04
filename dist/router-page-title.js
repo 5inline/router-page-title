@@ -1,6 +1,6 @@
 /**
  * Set the page title of a document in Angular using the UI Router.
- * @version  1.0.2
+ * @version  1.0.3
  * {@link }
  * @license MIT License
  */
@@ -9,7 +9,8 @@
 
 angular.module('routerPageTitle', [])
 .provider( 'routerPageTitle', routerPageTitleProvider)
-.directive( 'routerPageTitle', routerPageTitleDirective);
+.directive( 'routerPageTitle', routerPageTitleDirective)
+.directive( 'routerPageDescription', routerPageDescriptionDirective);
 
 function routerPageTitleProvider ()
 {
@@ -18,8 +19,11 @@ function routerPageTitleProvider ()
 		siteSeparator : ' | ',
 		pageTitle : '',
 		title : '',
+		description : '',
 		setSite : setSite,
 		setSeparator : setSeparator,
+		setDescription : setDescription,
+		getDescription : getDescription,
 		set : set,
 		get : get,
 		$get : _get
@@ -71,6 +75,25 @@ function routerPageTitleProvider ()
 	}
 
 	/**
+	 * Create and return a meta description.
+	 * @param {string} description
+	 * @return {string}
+	 */
+	function setDescription (description)
+	{
+		return this.description = description;
+	}
+
+	/**
+	 * Return the meta description that has been set.
+	 * @return {string}
+	 */
+	function getDescription ()
+	{
+		return this.description;
+	}
+
+	/**
 	 * $provider function.
 	 * @return {object}
 	 */
@@ -98,6 +121,32 @@ function routerPageTitleDirective (routerPageTitle, $document)
 					routerPageTitle.set(toRoute.data.pageTitle);
 					$document[0].title = routerPageTitle.get();
 				}
+
+				if( toRoute.data && toRoute.data.pageDescription ) {
+					routerPageTitle.setDescription(toRoute.data.pageDescription);
+				}
+			});
+		}
+	}
+
+	return directive;
+}
+
+routerPageDescriptionDirective.$inject = ['routerPageTitle','$document'];
+function routerPageDescriptionDirective (routerPageTitle, $document)
+{
+	var directive = {
+		restrict: 'A',
+		link : function ($scope, $elem, $attr)
+		{
+			$scope.$on('$stateChangeSuccess', function (event, toRoute, toParams)
+			{
+				if( toRoute.data && toRoute.data.pageDescription ) {
+					routerPageTitle.setDescription(toRoute.data.pageDescription);
+				}
+
+				$elem.attr('name','description');
+				$elem.attr('content', routerPageTitle.getDescription() );
 			});
 		}
 	}

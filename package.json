@@ -1,6 +1,6 @@
 {
   "name": "router-page-title",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "start": "grunt serve"
   },
