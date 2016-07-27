@@ -26,8 +26,12 @@ function routerPageTitleProvider ()
 		getDescription : getDescription,
 		set : set,
 		get : get,
-		$get : _get
-	}
+		$get : _get,
+		on : on,
+		_call : _call
+	},
+	_events = {}
+	;
 
 	/**
 	 * Set the website title.
@@ -36,6 +40,7 @@ function routerPageTitleProvider ()
 	function setSite(site)
 	{
 		this.siteTitle = site;
+		this._call.call(this, 'setTitle', site);
 	}
 
 	/**
@@ -45,6 +50,7 @@ function routerPageTitleProvider ()
 	function setSeparator(sep)
 	{
 		this.siteSeparator = sep;
+		this._call.call(this, 'setTitle', sep);
 	}
 
 	/**
@@ -54,6 +60,7 @@ function routerPageTitleProvider ()
 	function set (title)
 	{
 		this.pageTitle = title;
+		this._call.call(this, 'setTitle', title);
 	}
 
 	/**
@@ -81,7 +88,8 @@ function routerPageTitleProvider ()
 	 */
 	function setDescription (description)
 	{
-		return this.description = description;
+		this.description = description;
+		this._call.call(this, 'setDescription', title);
 	}
 
 	/**
@@ -101,6 +109,18 @@ function routerPageTitleProvider ()
 	{
 		delete pageTitle.$get;
 		return pageTitle;
+	}
+
+	function _call (event, data)
+	{
+		if( _events[event] ) {
+			_events[event].call(this, data);
+		}
+	}
+
+	function on (event, fn)
+	{
+		_events[event] = fn;
 	}
 
 	return pageTitle;
@@ -126,6 +146,11 @@ function routerPageTitleDirective (routerPageTitle, $document)
 					routerPageTitle.setDescription(toRoute.data.pageDescription);
 				}
 			});
+
+			routerPageTitle.on('setTitle', function (data)
+			{
+				$document[0].title = routerPageTitle.get();
+			});
 		}
 	}
 
@@ -146,6 +171,11 @@ function routerPageDescriptionDirective (routerPageTitle, $document)
 				}
 
 				$elem.attr('name','description');
+				$elem.attr('content', routerPageTitle.getDescription() );
+			});
+
+			routerPageTitle.on('setDescription', function (data)
+			{
 				$elem.attr('content', routerPageTitle.getDescription() );
 			});
 		}
