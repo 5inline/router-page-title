@@ -89,7 +89,7 @@ function routerPageTitleProvider ()
 	function setDescription (description)
 	{
 		this.description = description;
-		this._call.call(this, 'setDescription', title);
+		this._call.call(this, 'setDescription', description);
 	}
 
 	/**

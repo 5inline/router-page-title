@@ -1,6 +1,6 @@
 /**
  * Set the page title of a document in Angular using the UI Router.
- * @version  1.0.4
+ * @version  1.0.5
  * {@link }
  * @license MIT License
  */
@@ -89,7 +89,7 @@ function routerPageTitleProvider ()
 	function setDescription (description)
 	{
 		this.description = description;
-		this._call.call(this, 'setDescription', title);
+		this._call.call(this, 'setDescription', description);
 	}
 
 	/**

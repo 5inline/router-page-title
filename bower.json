@@ -1,7 +1,7 @@
 {
   "name": "router-page-title",
   "description": "Configure page titles for Angular applications using Angular UI Router.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "authors": [
     "5 Inline (http://5inline.com)"
   ],
