@@ -67,7 +67,7 @@ function routerPageTitleProvider ()
 	 * Construct and return the full site title.
 	 * @return {[type]} [description]
 	 */
-	function get ()
+	function get (reverse)
 	{
 		var _titles = [];
 		if( this.pageTitle ) {
@@ -77,7 +77,11 @@ function routerPageTitleProvider ()
 			_titles.push(this.siteTitle);
 		}
 
-		this.title = _titles.join(this.siteSeparator);
+		if( reverse ) {
+			this.title = _titles.reverse().join(this.siteSeparator);
+		} else {		
+			this.title = _titles.join(this.siteSeparator);
+		}
 		return this.title;
 	}
 
@@ -139,7 +143,7 @@ function routerPageTitleDirective (routerPageTitle, $document)
 			{
 				if( toRoute.data && toRoute.data.pageTitle ) {
 					routerPageTitle.set(toRoute.data.pageTitle);
-					$document[0].title = routerPageTitle.get();
+					$document[0].title = routerPageTitle.get(toRoute.data.pageTitleReverse);
 				}
 
 				if( toRoute.data && toRoute.data.pageDescription ) {
