@@ -1,6 +1,6 @@
 /**
  * Set the page title of a document in Angular using the UI Router.
- * @version  1.0.7
+ * @version  1.0.7.1
  * {@link }
  * @license MIT License
  */

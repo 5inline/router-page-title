@@ -1,6 +1,6 @@
 {
   "name": "router-page-title",
-  "version": "1.0.7",
+  "version": "1.0.7.1",
   "scripts": {
     "start": "grunt serve"
   },
@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/5inline/router-page-title.git"
   },
+  "main": "dist/router-page-title.js",
   "author": "5 Inline",
   "license": "MIT",
   "devDependencies": {
