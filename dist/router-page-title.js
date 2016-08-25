@@ -1,9 +1,15 @@
 /**
  * Set the page title of a document in Angular using the UI Router.
- * @version  1.0.6
+ * @version  1.0.7
  * {@link }
  * @license MIT License
  */
+
+/* commonjs package manager support (eg componentjs) */
+if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports){
+	module.exports = 'routerPageTitle';
+}
+
 (function(window,angular) {
 'use strict';
 

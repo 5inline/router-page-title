@@ -4,6 +4,12 @@
  * {@link }
  * @license MIT License
  */
+
+/* commonjs package manager support (eg componentjs) */
+if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports){
+	module.exports = 'routerPageTitle';
+}
+
 (function(window,angular) {
 'use strict';
 
